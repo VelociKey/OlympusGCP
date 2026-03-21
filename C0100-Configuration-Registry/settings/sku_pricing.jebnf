@@ -1,0 +1,11 @@
+# Olympus Fleet SKU Pricing (jeBNF)
+# Source: GCP/C0100-Configuration-Registry
+
+skus {
+    ComputeEngine = 0.0475
+    CloudStorage = 0.026
+    BigQuery = 5.00
+    CloudPubSub = 0.00004
+    VertexAI = 0.0035
+    CloudRun = 0.000024
+}
