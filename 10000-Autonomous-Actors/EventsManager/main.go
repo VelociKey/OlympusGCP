@@ -1,55 +1,64 @@
 package main
 
 import (
-	"context"
-	"fmt"
-	"log/slog"
-	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
+        "context"
+        "fmt"
+        "log/slog"
+        "net/http"
+        "os"
+        "os/signal"
+        "syscall"
+        "time"
 
-	"olympus.fleet/00SDLC/OlympusGCP-Events/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/events/eventsv1connect"
-	"olympus.fleet/00SDLC/OlympusGCP-Events/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference"
+        "olympus.fleet/00SDLC/OlympusGCP/gen/google/cloud/tasks/eventsv1connect"
+        taskspbconnect "olympus.fleet/00SDLC/OlympusGCP/gen/cloudtasks/apiv2/cloudtaskspb/cloudtaskspbconnect"
+        "olympus.fleet/00SDLC/OlympusGCP/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference"
 
-	"golang.org/x/net/http2"
-	"golang.org/x/net/http2/h2c"
+        "golang.org/x/net/http2"
+        "golang.org/x/net/http2/h2c"
 )
 
 func main() {
-	server := inference.NewEventsServer()
-	mux := http.NewServeMux()
-	path, handler := eventsv1connect.NewEventsServiceHandler(server)
-	mux.Handle(path, handler)
+        eventsServer := inference.NewEventsServer()
+        cloudTasksServer := inference.NewCloudTasksServer(eventsServer)
+        
+        mux := http.NewServeMux()
+        
+        // Legacy Events Service
+        path, handler := eventsv1connect.NewEventsServiceHandler(eventsServer)
+        mux.Handle(path, handler)
 
-	// Health Check / Pulse
-	mux.HandleFunc("/pulse", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprintf(w, `{"status":"HEALTHY", "workspace":"OlympusGCP-Events", "time":"%s"}`, time.Now().Format(time.RFC3339))
-	})
+        // New High-Fidelity Cloud Tasks v2 Service
+        tasksPath, tasksHandler := taskspbconnect.NewCloudTasksHandler(cloudTasksServer)
+        mux.Handle(tasksPath, tasksHandler)
 
-	port := "8094"
-	slog.Info("EventsManager starting", "port", port)
+        // Health Check / Pulse
+        mux.HandleFunc("/pulse", func(w http.ResponseWriter, r *http.Request) {
+                w.Header().Set("Content-Type", "application/json")
+                fmt.Fprintf(w, `{"status":"HEALTHY", "workspace":"OlympusGCP-Events", "time":"%s"}`, time.Now().Format(time.RFC3339))
+        })
 
-	srv := &http.Server{
-		Addr:              ":" + port,
-		Handler:           h2c.NewHandler(mux, &http2.Server{}),
-		ReadHeaderTimeout: 3 * time.Second,
-	}
+        port := "8094"
+        slog.Info("EventsManager starting", "port", port)
 
-	done := make(chan os.Signal, 1)
-	signal.Notify(done, os.Interrupt, syscall.SIGTERM)
+        srv := &http.Server{
+                Addr:              ":" + port,
+                Handler:           h2c.NewHandler(mux, &http2.Server{}),
+                ReadHeaderTimeout: 3 * time.Second,
+        }
 
-	go func() {
-		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			slog.Error("Server failed", "error", err)
-		}
-	}()
+        done := make(chan os.Signal, 1)
+        signal.Notify(done, os.Interrupt, syscall.SIGTERM)
 
-	<-done
-	slog.Info("EventsManager shutting down...")
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-	srv.Shutdown(ctx)
+        go func() {
+                if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed { 
+                        slog.Error("Server failed", "error", err)
+                }
+        }()
+
+        <-done
+        slog.Info("EventsManager shutting down...")
+        ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+        defer cancel()
+        srv.Shutdown(ctx)
 }

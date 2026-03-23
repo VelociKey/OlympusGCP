@@ -54,13 +54,13 @@ This is our contribution to a future where technology is a transparent, predicta
   - `010-Vision`, `020-Blueprints`, `030-Usage`, `040-Decisions`, `P0100-Identity`
 - **10000-Autonomous-Actors**: Agency, Orchestration, and Reasoning engines.
   - `10500-Delegation-Management`, `10520-Market-Coordination`, `10530-Orchestration-Control`, `10600-Cognitive-Specialties`, `10610-Architectural-Synthesis`, `10620-Logic-Construction`, `10700-Processing-Engines`, `10710-Reasoning-Inference`
-- **20000-Context-Bridges**: MCP Servers, Cloud Integrations, and Information Repositories.
+- **30000-Context-Bridges**: MCP Servers, Cloud Integrations, and Information Repositories.
   - `20100-Capability-Surfacing`, `20200-Information-Repositories`, `20300-Remote-Environments`, `20400-Interaction-Foundations`, `210-git-mcp`, `220-cloud-mcp`, `240-async-primitives`, `900-CapabilityProvider`
 - **30000-Federated-Services**: Service Mesh and Worker Registry.
   - `310-Core-Registry`, `320-Bridges`, `330-Ontology`
-- **40000-Communication-Contracts**: Protocol Definitions and Interaction Models.
+- **50000-Communication-Contracts**: Protocol Definitions and Interaction Models.
   - `410-Interaction-Models`, `420-Outcome-Verifiers`, `430-Protocol-Definitions`, `460-agent-gateway`, `470-economic-surface`
-- **50000-Intelligence-Framework**: Linguistic Grammars and Semantic Cartography.
+- **20000-Intelligence-Framework**: Linguistic Grammars and Semantic Cartography.
   - `510-Linguistic-Grammars`, `520-Prompt-Synthetics`, `530-Semantic-Cartography`
 - **60000-Information-Storage**: Memory Anchors and Schema Definitions.
   - `610-Memory-Anchors`, `620-Schema-Definitions`, `630-Semantic-Persistence`

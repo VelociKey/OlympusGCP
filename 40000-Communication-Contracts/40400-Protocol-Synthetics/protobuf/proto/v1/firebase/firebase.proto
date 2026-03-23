@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package firebase.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/firebase;firebasev1";
+
+service FirebaseService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc SetDocument (SetDocumentRequest) returns (SetDocumentResponse);
+}
+
+message CreateUserRequest {
+  string email = 1;
+  string password = 2;
+  string display_name = 3;
+}
+
+message CreateUserResponse {
+  string uid = 1;
+}
+
+message SetDocumentRequest {
+  string collection = 1;
+  string doc_id = 2;
+  string data_json = 3;
+}
+
+message SetDocumentResponse {
+  string uid = 1;
+}

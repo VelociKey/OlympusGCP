@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package olympus.orchestration.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/orchestration/v1;orchestrationv1";
+
+service OrchestrationService {
+  // --- Pub/Sub ---
+  rpc Publish(PublishRequest) returns (PublishResponse);
+  rpc CreateTopic(TopicRequest) returns (StatusResponse);
+  rpc CreateSubscription(SubscriptionRequest) returns (StatusResponse);
+  
+  // --- Cloud Tasks ---
+  rpc CreateTask(TaskRequest) returns (TaskResponse);
+  
+  // --- Cloud Scheduler ---
+  rpc CreateJob(JobRequest) returns (JobResponse);
+
+  // --- Cloud Workflows (Expansion) ---
+  rpc ExecuteWorkflow(WorkflowRequest) returns (WorkflowResponse);
+
+  // --- Eventarc (Deepening) ---
+  rpc RegisterTrigger(TriggerRequest) returns (StatusResponse);
+}
+
+message StatusResponse { bool success = 1; }
+
+// Messaging Messages
+message PublishRequest { string topic = 1; bytes data = 2; }
+message PublishResponse { string message_id = 1; }
+message TopicRequest { string topic_id = 1; }
+message SubscriptionRequest { string subscription_id = 1; string topic_id = 2; }
+
+// Task Messages
+message TaskRequest { string queue = 1; string payload = 2; }
+message TaskResponse { string task_id = 1; }
+
+// Scheduler Messages
+message JobRequest { string name = 1; string schedule = 2; string target = 3; }
+message JobResponse { string job_id = 1; }
+
+// Workflow Messages
+message WorkflowRequest { string workflow_id = 1; string input_json = 2; }
+message WorkflowResponse { string output_json = 1; string state = 2; }
+
+// Eventarc Messages
+message TriggerRequest {
+  string trigger_id = 1;
+  string event_type = 2; // e.g. "GCS_OBJECT_FINALIZE"
+  string target_url = 3; // The HTTP endpoint to call
+  map<string, string> filters = 4; // e.g. {"bucket": "my-bucket"}
+}

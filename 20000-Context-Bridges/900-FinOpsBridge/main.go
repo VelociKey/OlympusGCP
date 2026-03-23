@@ -10,13 +10,13 @@ import (
 	"connectrpc.com/connect"
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
-	"google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/types/known/structpb"
 
-	mcpv1 "olympus.fleet/00SDLC/Olympus2/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/olympus/mcp/v1"
-	mcpv1connect "olympus.fleet/00SDLC/Olympus2/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/olympus/mcp/v1/mcpv1connect"
+	mcpv1 "olympus.fleet/00SDLC/Olympus2/50000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/olympus/mcp/v1"
+	mcpv1connect "olympus.fleet/00SDLC/Olympus2/50000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/olympus/mcp/v1/mcpv1connect"
 
-	finopsv1 "olympus.fleet/00SDLC/OlympusGCP-FinOps/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/finops"
-	"olympus.fleet/00SDLC/OlympusGCP-FinOps/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/finops/finopsv1connect"
+	finopsv1 "olympus.fleet/00SDLC/OlympusGCP/gen/finops"
+	"olympus.fleet/00SDLC/OlympusGCP/gen/finops/finopsv1connect"
 )
 
 type FinOpsBridgeServer struct {
@@ -92,7 +92,7 @@ func (s *FinOpsBridgeServer) CallTool(
 		// Return structurally typed jeBNF payload
 		msg := fmt.Sprintf("Result { EstimatedCost = %.2f; Confidence = \"%s\"; }", resp.Msg.EstimatedUsd, resp.Msg.Confidence)
 		return connect.NewResponse(&mcpv1.CallToolResponse{
-			Content: []*mcpv1.Content{{Type: "olympus.fleet/00SDLC/Olympus2/01000-Identity-Foundations/P0000-pkg/text", Text: msg}},
+			Content: []*mcpv1.Content{{Type: "olympus.fleet/00SDLC/Olympus2/01000-Identity-Foundations/01200-Logic-Libraries/text", Text: msg}},
 		}), nil
 
 	case "finops_validate_budget":
@@ -110,7 +110,7 @@ func (s *FinOpsBridgeServer) CallTool(
 		// Return structurally typed jeBNF payload
 		msg := fmt.Sprintf("Result { Approved = %t; Message = \"%s\"; }", resp.Msg.Approved, resp.Msg.Message)
 		return connect.NewResponse(&mcpv1.CallToolResponse{
-			Content: []*mcpv1.Content{{Type: "olympus.fleet/00SDLC/Olympus2/01000-Identity-Foundations/P0000-pkg/text", Text: msg}},
+			Content: []*mcpv1.Content{{Type: "olympus.fleet/00SDLC/Olympus2/01000-Identity-Foundations/01200-Logic-Libraries/text", Text: msg}},
 		}), nil
 
 	default:

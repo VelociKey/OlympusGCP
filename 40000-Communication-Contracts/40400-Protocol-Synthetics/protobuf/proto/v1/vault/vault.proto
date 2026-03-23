@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package vault.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/vault;vaultv1";
+
+service VaultService {
+  rpc VaultWrite (VaultWriteRequest) returns (VaultWriteResponse);
+  rpc VaultRead (VaultReadRequest) returns (VaultReadResponse);
+  rpc GetSecretVersion (GetSecretVersionRequest) returns (VaultReadResponse);
+  rpc ListSecretVersions (ListSecretVersionsRequest) returns (ListSecretVersionsResponse);
+  rpc ListSecrets (ListSecretsRequest) returns (ListSecretsResponse);
+  rpc TestIAMPolicy (TestIAMPolicyRequest) returns (TestIAMPolicyResponse);
+}
+
+message VaultWriteRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message VaultWriteResponse {
+  int32 version = 1;
+}
+
+message VaultReadRequest {
+  string key = 1;
+}
+
+message VaultReadResponse {
+  string value = 1;
+  int32 version = 2;
+}
+
+message GetSecretVersionRequest {
+  string key = 1;
+  int32 version = 2;
+}
+
+message ListSecretVersionsRequest {
+  string key = 1;
+}
+
+message ListSecretVersionsResponse {
+  repeated int32 versions = 1;
+}
+
+message ListSecretsRequest {
+  string prefix = 1;
+}
+
+message ListSecretsResponse {
+  repeated string keys = 1;
+}
+
+message TestIAMPolicyRequest {
+  string identity = 1;
+  string action = 2;
+  string resource = 3;
+}
+
+message TestIAMPolicyResponse {
+  bool allowed = 1;
+  string reason = 2;
+}

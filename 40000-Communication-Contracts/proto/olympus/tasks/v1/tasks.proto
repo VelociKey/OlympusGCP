@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package olympus.tasks.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/tasks/v1;tasksv1";
+
+service TaskService {
+  rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
+  rpc ListQueues(ListQueuesRequest) returns (ListQueuesResponse);
+}
+
+message CreateTaskRequest {
+  string queue_id = 1;
+  string payload = 2;
+  string target_url = 3;
+}
+
+message CreateTaskResponse {
+  string task_id = 1;
+  string status = 2;
+}
+
+message ListQueuesRequest {}
+
+message ListQueuesResponse {
+  repeated string queue_names = 1;
+}

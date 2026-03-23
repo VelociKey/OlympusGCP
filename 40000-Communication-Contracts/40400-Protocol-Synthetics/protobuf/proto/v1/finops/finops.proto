@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package olympus.finops.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/finops;finopsv1";
+
+service FinOpsService {
+  // Cloud Billing & Usage Intent
+  rpc EstimateCost(EstimateCostRequest) returns (EstimateCostResponse);
+  rpc ValidateBudget(ValidateBudgetRequest) returns (ValidateBudgetResponse);
+  rpc TrackUsage(TrackUsageRequest) returns (TrackUsageResponse);
+}
+
+message EstimateCostRequest {
+  string service = 1;
+  string action = 2;
+  map<string, string> parameters = 3;
+}
+
+message EstimateCostResponse {
+  double estimated_usd = 1;
+  string confidence = 2;
+}
+
+message ValidateBudgetRequest {
+  string project_id = 1;
+  double requested_amount = 2;
+}
+
+message ValidateBudgetResponse {
+  bool approved = 1;
+  string message = 2;
+}
+
+message TrackUsageRequest {
+  string service = 1;
+  string resource_id = 2;
+  double consumption_units = 3;
+}
+
+message TrackUsageResponse {
+  double current_mtd_usd = 1;
+}

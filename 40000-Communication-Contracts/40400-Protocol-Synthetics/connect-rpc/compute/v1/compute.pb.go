@@ -403,7 +403,7 @@ const file_compute_v1_compute_proto_rawDesc = "" +
 	"\n" +
 	"RunService\x12\x1d.compute.v1.RunServiceRequest\x1a\x1e.compute.v1.RunServiceResponse\x12Z\n" +
 	"\x0fTriggerFunction\x12\".compute.v1.TriggerFunctionRequest\x1a#.compute.v1.TriggerFunctionResponse\x12N\n" +
-	"\vCheckHealth\x12\x1e.compute.v1.CheckHealthRequest\x1a\x1f.compute.v1.CheckHealthResponseBhZfOlympusGCP-Compute/gen/v1/compute;computev1b\x06proto3"
+	"\vCheckHealth\x12\x1e.compute.v1.CheckHealthRequest\x1a\x1f.compute.v1.CheckHealthResponseBhZfOlympusGCP-Compute/gen/compute;computev1b\x06proto3"
 
 var (
 	file_compute_v1_compute_proto_rawDescOnce sync.Once

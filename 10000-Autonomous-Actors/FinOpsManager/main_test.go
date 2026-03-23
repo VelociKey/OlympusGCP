@@ -6,10 +6,10 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	finopsv1 "olympus.fleet/00SDLC/OlympusGCP-FinOps/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/finops"
-	computev1 "olympus.fleet/00SDLC/OlympusGCP-Compute/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/compute"
-	"olympus.fleet/00SDLC/OlympusGCP-Compute/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/compute/computev1connect"
-	"olympus.fleet/00SDLC/OlympusGCP-FinOps/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference"
+	finopsv1 "olympus.fleet/00SDLC/OlympusGCP/gen/finops"
+	computev1 "olympus.fleet/00SDLC/OlympusGCP/gen/compute"
+	"olympus.fleet/00SDLC/OlympusGCP/gen/google/cloud/compute/computev1connect"
+	"olympus.fleet/00SDLC/OlympusGCP/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference"
 	"connectrpc.com/connect"
 )
 

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package compute.v1;
 
-option go_package = "OlympusGCP-Compute/gen/v1/compute;computev1";
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/compute;computev1";
 
 service ComputeService {
   rpc RunService (RunServiceRequest) returns (RunServiceResponse);

@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package storage.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/storage;storagev1";
+
+service StorageService {
+  rpc CreateBucket (CreateBucketRequest) returns (CreateBucketResponse);
+  rpc UploadObject (UploadObjectRequest) returns (UploadObjectResponse);
+  rpc GetObjectMetadata (GetObjectMetadataRequest) returns (GetObjectMetadataResponse);
+  rpc ListObjects (ListObjectsRequest) returns (ListObjectsResponse);
+  rpc GetDownloadURL (GetDownloadURLRequest) returns (GetDownloadURLResponse);
+}
+
+message CreateBucketRequest {
+  string name = 1;
+}
+
+message CreateBucketResponse {}
+
+message UploadObjectRequest {
+  string bucket = 1;
+  string name = 2;
+  bytes data = 3;
+  map<string, string> metadata = 4;
+}
+
+message UploadObjectResponse {}
+
+message GetObjectMetadataRequest {
+  string bucket = 1;
+  string name = 2;
+}
+
+message GetObjectMetadataResponse {
+  string bucket = 1;
+  string name = 2;
+  int64 size = 3;
+  map<string, string> metadata = 4;
+}
+
+message ListObjectsRequest {
+  string bucket = 1;
+  string prefix = 2;
+}
+
+message ListObjectsResponse {
+  repeated string object_names = 1;
+}
+
+message GetDownloadURLRequest {
+  string bucket = 1;
+  string name = 2;
+}
+
+message GetDownloadURLResponse {
+  string url = 1;
+}

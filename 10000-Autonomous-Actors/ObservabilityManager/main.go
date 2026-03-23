@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"olympus.fleet/00SDLC/OlympusGCP-Observability/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/observability/observabilityv1connect"
-	"olympus.fleet/00SDLC/OlympusGCP-Observability/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference"
+	"olympus.fleet/00SDLC/OlympusGCP/gen/observability/observabilityv1connect"
+	"olympus.fleet/00SDLC/OlympusGCP/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference"
 
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"

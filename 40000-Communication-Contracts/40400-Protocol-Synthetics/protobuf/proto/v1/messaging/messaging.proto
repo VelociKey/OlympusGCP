@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package messaging.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/messaging;messagingv1";
+
+service MessagingService {
+  rpc SendMessage (SendMessageRequest) returns (SendMessageResponse);
+}
+
+message SendMessageRequest {
+  string recipient = 1;
+  string content = 2;
+}
+
+message SendMessageResponse {
+  string message_id = 1;
+}

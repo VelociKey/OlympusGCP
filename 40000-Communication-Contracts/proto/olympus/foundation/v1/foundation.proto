@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package olympus.foundation.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/foundation/v1;foundationv1";
+
+service FoundationService {
+  // --- Secret Manager (Vault) ---
+  rpc VaultRead(VaultReadRequest) returns (VaultReadResponse);
+  rpc VaultWrite(VaultWriteRequest) returns (VaultWriteResponse);
+  
+  // --- Identity Platform (Firebase Auth) ---
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc VerifyToken(VerifyTokenRequest) returns (VerifyTokenResponse);
+  
+  // --- Cloud IAM ---
+  rpc TestIAMPolicy(TestIAMPolicyRequest) returns (TestIAMPolicyResponse);
+  rpc LookupIdentity(LookupIdentityRequest) returns (LookupIdentityResponse);
+
+  // --- Cloud KMS (Expansion) ---
+  rpc KMSDecrypt(KMSRequest) returns (KMSResponse);
+  rpc KMSEncrypt(KMSRequest) returns (KMSResponse);
+  rpc KMSSign(KMSSignRequest) returns (KMSSignResponse);
+
+  // --- Database Auth (Deepening) ---
+  rpc MintDatabaseToken(DBTokenRequest) returns (DBTokenResponse);
+
+  // --- Workload Identity (Expansion) ---
+  rpc ImpersonateServiceAccount(ImpersonateRequest) returns (DBTokenResponse);
+
+  // --- Cloud Run / Compute (Consolidation) ---
+  rpc RunService(RunServiceRequest) returns (RunServiceResponse);
+  rpc TriggerFunction(TriggerFunctionRequest) returns (TriggerFunctionResponse);
+}
+
+// Vault Messages
+message VaultReadRequest { string key = 1; }
+message VaultReadResponse { string value = 1; int32 version = 2; }
+message VaultWriteRequest { string key = 1; string value = 2; }
+message VaultWriteResponse { string message = 1; int32 version = 2; }
+
+// Identity Messages
+message CreateUserRequest { string email = 1; string password = 2; }
+message CreateUserResponse { string uid = 1; }
+message VerifyTokenRequest { string id_token = 1; }
+message VerifyTokenResponse { string uid = 1; bool valid = 2; }
+
+// IAM Messages
+message TestIAMPolicyRequest { string identity = 1; string action = 2; string resource = 3; }
+message TestIAMPolicyResponse { bool allowed = 1; string reason = 2; }
+message LookupIdentityRequest { string token = 1; }
+message LookupIdentityResponse { string service_account = 1; string project_id = 2; repeated string roles = 3; }
+
+// KMS Messages
+message KMSRequest { string key_id = 1; bytes data = 2; }
+message KMSResponse { bytes data = 1; }
+message KMSSignRequest { string key_id = 1; bytes digest = 2; }
+message KMSSignResponse { bytes signature = 1; }
+
+// Database Auth Messages
+message DBTokenRequest {
+  string identity = 1;
+  string instance_id = 2;
+}
+
+message DBTokenResponse {
+  string access_token = 1;
+  int64 expires_in = 2;
+}
+
+message ImpersonateRequest {
+  string instigator_identity = 1;
+  string target_service_account = 2;
+  repeated string scopes = 3;
+}
+
+// Compute Messages
+message RunServiceRequest { string service_name = 1; string image = 2; }
+message RunServiceResponse { string status = 1; string endpoint_url = 2; }
+message TriggerFunctionRequest { string function_name = 1; }
+message TriggerFunctionResponse { string result = 1; }

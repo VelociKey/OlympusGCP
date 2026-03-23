@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package events.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/events;eventsv1";
+
+service EventsService {
+  rpc Publish (PublishRequest) returns (PublishResponse);
+  
+  // Tasks Advanced
+  rpc CreateTask (CreateTaskRequest) returns (CreateTaskResponse);
+  rpc PauseQueue (PauseQueueRequest) returns (PauseQueueResponse);
+  rpc ResumeQueue (ResumeQueueRequest) returns (ResumeQueueResponse);
+  rpc PurgeQueue (PurgeQueueRequest) returns (PurgeQueueResponse);
+
+  rpc CreateJob (CreateJobRequest) returns (CreateJobResponse);
+}
+
+message PublishRequest {
+  string topic = 1;
+  string data = 2;
+}
+
+message PublishResponse {
+  string message_id = 1;
+}
+
+message CreateTaskRequest {
+  string queue = 1;
+  string task_id = 2; // For deduplication
+  string payload = 3;
+  int32 delay_seconds = 4;
+  int32 max_attempts = 5;
+}
+
+message CreateTaskResponse {
+  string task_name = 1;
+}
+
+message PauseQueueRequest {
+  string name = 1;
+}
+
+message PauseQueueResponse {}
+
+message ResumeQueueRequest {
+  string name = 1;
+}
+
+message ResumeQueueResponse {}
+
+message PurgeQueueRequest {
+  string name = 1;
+}
+
+message PurgeQueueResponse {}
+
+message CreateJobRequest {
+  string name = 1;
+  string schedule = 2;
+  string target_url = 3;
+}
+
+message CreateJobResponse {
+  string job_id = 1;
+}

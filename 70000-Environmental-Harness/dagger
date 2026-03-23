@@ -1,5 +1,5 @@
 {
-  "name": "olympusgcp-compute",
+  "name": "olympusgcp-storage",
   "engineVersion": "v0.19.11",
   "sdk": {
     "source": "go"

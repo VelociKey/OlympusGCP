@@ -1,0 +1,10 @@
+# Olympus Fleet Provisioning Configuration (jeBNF-lite)
+# This file defines the "Podman Mount System" requirements for the workstation/podman targets.
+
+mounts {
+    LocalScratch: source="Olympus2/C0990-Ephemeral-Scratch/OlympusGCP-FinOps", target="/data", type="ReadWrite"
+}
+
+emulators {
+    Ollama: host="localhost:11434"
+}

@@ -10,8 +10,8 @@ import (
 	"connectrpc.com/connect"
 
 	mcpbridge "olympus.fleet/00SDLC/Olympus2/90000-Enablement-Labs/90200-Logic-Libraries/140-MCPBridge"
-	eventsv1 "olympus.fleet/00SDLC/OlympusGCP-Events/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/events"
-	"olympus.fleet/00SDLC/OlympusGCP-Events/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/events/eventsv1connect"
+	eventsv1 "olympus.fleet/00SDLC/OlympusGCP/gen/events"
+	"olympus.fleet/00SDLC/OlympusGCP/gen/google/cloud/tasks/eventsv1connect"
 )
 
 func main() {

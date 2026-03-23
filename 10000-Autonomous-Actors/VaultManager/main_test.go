@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	vaultv1 "olympus.fleet/00SDLC/OlympusGCP-Vault/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/vault"
-	"olympus.fleet/00SDLC/OlympusGCP-Vault/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference"
+	vaultv1 "olympus.fleet/00SDLC/OlympusGCP/gen/vault"
+	"olympus.fleet/00SDLC/OlympusGCP/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference"
 	"connectrpc.com/connect"
 )
 

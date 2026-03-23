@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package olympus.artifacts.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/artifacts/v1;artifactsv1";
+
+service ArtifactService {
+  rpc PushImage(PushImageRequest) returns (PushImageResponse);
+  rpc ListImages(ListImagesRequest) returns (ListImagesResponse);
+}
+
+message PushImageRequest {
+  string image_name = 1;
+  string tag = 2;
+  bytes tarball = 3;
+}
+
+message PushImageResponse {
+  string digest = 1;
+  string status = 2;
+}
+
+message ListImagesRequest {}
+
+message ListImagesResponse {
+  repeated string image_names = 1;
+}

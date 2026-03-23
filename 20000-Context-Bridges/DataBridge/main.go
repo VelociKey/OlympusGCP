@@ -8,8 +8,8 @@ import (
 	"connectrpc.com/connect"
 	"github.com/mark3labs/mcp-go/mcp"
 
-	"olympus.fleet/00SDLC/OlympusGCP-Data/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/data/datav1connect"
-	datav1 "olympus.fleet/00SDLC/OlympusGCP-Data/40000-Communication-Contracts/40400-Protocol-Synthetics/connect-rpc/gen/v1/data"
+	"olympus.fleet/00SDLC/OlympusGCP/gen/data/datav1connect"
+	datav1 "olympus.fleet/00SDLC/OlympusGCP/gen/data"
 	"olympus.fleet/00SDLC/Olympus2/90000-Enablement-Labs/90200-Logic-Libraries/140-MCPBridge"
 )
 

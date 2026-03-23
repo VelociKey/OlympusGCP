@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package data.v1;
+
+option go_package = "olympus.fleet/00SDLC/OlympusGCP/gen/data;datav1";
+
+service DataService {
+  rpc Upsert (UpsertRequest) returns (UpsertResponse);
+  rpc WriteRow (WriteRowRequest) returns (WriteRowResponse);
+  rpc Query (QueryRequest) returns (QueryResponse);
+}
+
+message UpsertRequest {
+  string collection = 1;
+  string doc_id = 2;
+  string data_json = 3;
+}
+
+message UpsertResponse {}
+
+message WriteRowRequest {
+  string table = 1;
+  string row_key = 2;
+  string column_family = 3;
+  string column = 4;
+  bytes value = 5;
+}
+
+message WriteRowResponse {}
+
+message QueryRequest {
+  string query = 1;
+  string collection = 2;
+  string filter = 3;
+}
+
+message QueryResponse {
+  string results_json = 1;
+}

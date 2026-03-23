@@ -1,0 +1,10 @@
+# OlympusGCP-FinOps Workspace DNA (jeBNF-MPH)
+workspace_name = "OlympusGCP-FinOps"
+
+  Item 0 .md "README.md"
+  Domain "10000-Autonomous-Actors" {
+    Domain "900-FinOpsManager" { Item 1 .go "main.go" }
+  }
+  Domain "30000-Context-Bridges" {
+    Domain "900-FinOpsBridge" { Item 2 .go "main.go" }
+  }
