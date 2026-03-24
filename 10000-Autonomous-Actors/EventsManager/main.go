@@ -10,8 +10,9 @@ import (
         "syscall"
         "time"
 
-        "olympus.fleet/00SDLC/OlympusGCP/gen/google/cloud/tasks/eventsv1connect"
-        taskspbconnect "olympus.fleet/00SDLC/OlympusGCP/gen/cloudtasks/apiv2/cloudtaskspb/cloudtaskspbconnect"
+        "olympus.fleet/00SDLC/OlympusGCP/gen/google/cloud/tasks/v2/cloudtaskspbconnect"
+        // taskspbconnect is used as alias above if needed, but let's check eventsv1 too
+        "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/tasks/v1/tasksv1connect"
         "olympus.fleet/00SDLC/OlympusGCP/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference"
 
         "golang.org/x/net/http2"
@@ -19,7 +20,8 @@ import (
 )
 
 func main() {
-        eventsServer := inference.NewEventsServer()
+        storageDir := "00SDLC/OlympusGCP/C0990-Ephemeral-Scratch"
+        eventsServer := inference.NewEventsServer(storageDir)
         cloudTasksServer := inference.NewCloudTasksServer(eventsServer)
         
         mux := http.NewServeMux()

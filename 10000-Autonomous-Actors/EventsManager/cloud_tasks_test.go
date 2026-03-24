@@ -13,7 +13,8 @@ import (
 )
 
 func TestCloudTasksPrototype(t *testing.T) {
-        eventsServer := inference.NewEventsServer()
+        storageDir := t.TempDir()
+        eventsServer := inference.NewEventsServer(storageDir)
         server := inference.NewCloudTasksServer(eventsServer)
         
         mux := http.NewServeMux()
@@ -40,6 +41,18 @@ func TestCloudTasksPrototype(t *testing.T) {
 
                 if res.Msg.Name != req.Task.Name {
                         t.Errorf("Expected task name %s, got %s", req.Task.Name, res.Msg.Name)
+                }
+
+                // Verify persistence via GetTask
+                getRes, err := client.GetTask(context.Background(), connect.NewRequest(&cloudtaskspb.GetTaskRequest{
+                        Name: req.Task.Name,
+                }))
+                if err != nil {
+                        t.Fatalf("GetTask failed: %v", err)
+                }
+
+                if getRes.Msg.Name != req.Task.Name {
+                        t.Errorf("Expected persisted task name %s, got %s", req.Task.Name, getRes.Msg.Name)
                 }
         })
 }
