@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "analyticv1connect",
+    srcs = ["analytic.connect.go"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/analytic/v1/analyticv1connect",
+    visibility = ["//visibility:public"],
+    deps = ["@com_connectrpc_connect//:go_default_library"],
+)

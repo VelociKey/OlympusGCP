@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "iam",
+    srcs = [
+        "iam_policy.pb.go",
+        "options.pb.go",
+        "policy.pb.go",
+        "resource_policy_member.pb.go",
+    ],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/google/iam/v1",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//50RNDF/REPOS/GCP-Emulator-Expansion/refGCP/googleapis/google/api:annotations_go_proto",
+        "//50RNDF/REPOS/GCP-Emulator-Expansion/refGCP/googleapis/google/type:expr_go_proto",
+        "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
+        "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
+        "@org_golang_google_protobuf//types/known/fieldmaskpb:go_default_library",
+    ],
+)

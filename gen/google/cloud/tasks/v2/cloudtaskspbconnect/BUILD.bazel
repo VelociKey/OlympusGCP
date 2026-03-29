@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "cloudtaskspbconnect",
+    srcs = ["cloudtasks.connect.go"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/google/cloud/tasks/v2/cloudtaskspbconnect",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/cloud/tasks/v2:cloudtaskspb",
+        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/iam/v1:iampb",
+        "@com_connectrpc_connect//:go_default_library",
+        "@org_golang_google_protobuf//types/known/emptypb:go_default_library",
+    ],
+)

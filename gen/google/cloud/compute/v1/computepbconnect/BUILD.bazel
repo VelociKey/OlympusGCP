@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "computepbconnect",
+    srcs = ["compute.connect.go"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/google/cloud/compute/v1/computepbconnect",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/cloud/compute/v1:computepb",
+        "@com_connectrpc_connect//:go_default_library",
+    ],
+)

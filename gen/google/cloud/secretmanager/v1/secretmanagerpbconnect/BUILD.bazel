@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "secretmanagerpbconnect",
+    srcs = ["service.connect.go"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/google/cloud/secretmanager/v1/secretmanagerpbconnect",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/cloud/secretmanager/v1:secretmanagerpb",
+        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/iam/v1:iampb",
+        "@com_connectrpc_connect//:go_default_library",
+        "@org_golang_google_protobuf//types/known/emptypb:go_default_library",
+    ],
+)

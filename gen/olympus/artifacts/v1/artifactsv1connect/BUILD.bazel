@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "artifactsv1connect",
+    srcs = ["artifacts.connect.go"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/artifacts/v1/artifactsv1connect",
+    visibility = ["//visibility:public"],
+    deps = ["@com_connectrpc_connect//:go_default_library"],
+)

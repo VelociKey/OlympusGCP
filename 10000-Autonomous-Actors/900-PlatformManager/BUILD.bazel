@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "900-PlatformManager_lib",
+    srcs = ["main.go"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/10000-Autonomous-Actors/900-PlatformManager",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//00SDLC/Olympus2/90000-Enablement-Labs/90200-Logic-Libraries/220-Whisper",
+        "//00SDLC/OlympusGCP/gen/olympus/platform/v1/platformv1connect",
+        "@com_connectrpc_connect//:go_default_library",
+        "@com_github_getkin_kin_openapi//openapi3:go_default_library",
+        "@in_gopkg_yaml_v3//:go_default_library",
+        "@org_golang_x_net//http2:go_default_library",
+        "@org_golang_x_net//http2/h2c:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "900-PlatformManager",
+    embed = [":900-PlatformManager_lib"],
+    visibility = ["//visibility:public"],
+)

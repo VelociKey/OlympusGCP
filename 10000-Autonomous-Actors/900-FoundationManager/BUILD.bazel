@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "900-FoundationManager_lib",
+    srcs = ["main.go"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/10000-Autonomous-Actors/900-FoundationManager",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//00SDLC/Olympus2/90000-Enablement-Labs/90200-Logic-Libraries/220-Whisper",
+        "//00SDLC/OlympusGCP/gen/olympus/foundation/v1/foundationv1connect",
+        "@com_connectrpc_connect//:go_default_library",
+        "@com_github_golang_jwt_jwt_v5//:go_default_library",
+        "@com_github_hashicorp_vault_api//:go_default_library",
+        "@com_github_moby_moby_api//types/container:go_default_library",
+        "@com_github_moby_moby_client//:go_default_library",
+        "@com_google_firebase_go_v4//:go_default_library",
+        "@com_google_firebase_go_v4//auth:go_default_library",
+        "@org_golang_google_api//option:go_default_library",
+        "@org_golang_x_net//http2:go_default_library",
+        "@org_golang_x_net//http2/h2c:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "900-FoundationManager",
+    embed = [":900-FoundationManager_lib"],
+    visibility = ["//visibility:public"],
+)

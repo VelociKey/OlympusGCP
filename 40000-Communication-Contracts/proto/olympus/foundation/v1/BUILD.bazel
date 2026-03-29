@@ -1,0 +1,24 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+proto_library(
+    name = "foundationv1_proto",
+    srcs = ["foundation.proto"],
+    visibility = ["//visibility:public"],
+)
+
+go_proto_library(
+    name = "foundationv1_go_proto",
+    compilers = ["@io_bazel_rules_go//proto:go_grpc"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/foundation/v1",
+    proto = ":foundationv1_proto",
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "foundation",
+    embed = [":foundationv1_go_proto"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/foundation/v1",
+    visibility = ["//visibility:public"],
+)

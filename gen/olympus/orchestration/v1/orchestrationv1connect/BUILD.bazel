@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "orchestrationv1connect",
+    srcs = ["orchestration.connect.go"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/orchestration/v1/orchestrationv1connect",
+    visibility = ["//visibility:public"],
+    deps = ["@com_connectrpc_connect//:go_default_library"],
+)

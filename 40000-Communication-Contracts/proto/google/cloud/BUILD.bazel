@@ -1,0 +1,18 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+proto_library(
+    name = "cloud_proto",
+    srcs = ["cloud.proto"],
+    visibility = ["//visibility:public"],
+)
+
+proto_library(
+    name = "extended_operations_proto",
+    srcs = ["extended_operations.proto"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:annotations_proto",
+        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:client_proto",
+        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:field_behavior_proto",
+    ],
+)

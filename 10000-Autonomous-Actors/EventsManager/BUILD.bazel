@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
+go_library(
+    name = "EventsManager_lib",
+    srcs = ["main.go"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/10000-Autonomous-Actors/EventsManager",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//00SDLC/OlympusGCP/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference",
+        "//00SDLC/OlympusGCP/gen/google/cloud/tasks/v2/cloudtaskspbconnect",
+        "//00SDLC/OlympusGCP/gen/olympus/tasks/v1/tasksv1connect",
+        "@org_golang_x_net//http2:go_default_library",
+        "@org_golang_x_net//http2/h2c:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "EventsManager",
+    embed = [":EventsManager_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "EventsManager_test",
+    srcs = [
+        "cloud_tasks_test.go",
+        "main_test.go",
+    ],
+    embed = [":EventsManager_lib"],
+    deps = [
+        "//00SDLC/OlympusGCP/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference",
+        "//00SDLC/OlympusGCP/40000-Communication-Contracts/40400-Protocol-Synthetics/protobuf/proto/v1/events",
+        "@com_connectrpc_connect//:go_default_library",
+        "@com_google_cloud_go_cloudtasks//apiv2/cloudtaskspb:go_default_library",
+    ],
+)
