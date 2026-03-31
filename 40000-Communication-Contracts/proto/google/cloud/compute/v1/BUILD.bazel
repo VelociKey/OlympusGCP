@@ -7,8 +7,8 @@ proto_library(
     srcs = ["compute.proto"],
     visibility = ["//visibility:public"],
     deps = [
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:api_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/cloud:cloud_proto",
+        "//google/api:api_proto",
+        "//google/cloud:cloud_proto",
         "@com_google_protobuf//:any_proto",
     ],
 )
@@ -20,11 +20,11 @@ go_proto_library(
     proto = ":computepb_proto",
     visibility = ["//visibility:public"],
     deps = [
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:annotations_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:client_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:field_behavior_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:resource_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/cloud:extended_operations_proto",
+        "//google/api:annotations_proto",
+        "//google/api:client_proto",
+        "//google/api:field_behavior_proto",
+        "//google/api:resource_proto",
+        "//google/cloud:extended_operations_proto",
     ],
 )
 

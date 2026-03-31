@@ -7,6 +7,6 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/cloud/compute/v1:computepb",
-        "@com_connectrpc_connect//:go_default_library",
+        "@com_connectrpc_connect//:connect",
     ],
 )

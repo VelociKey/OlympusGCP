@@ -7,6 +7,6 @@ go_library(
     visibility = ["//visibility:public"],
     deps = [
         "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/iam/v1:iampb",
-        "@com_connectrpc_connect//:go_default_library",
+        "@com_connectrpc_connect//:connect",
     ],
 )

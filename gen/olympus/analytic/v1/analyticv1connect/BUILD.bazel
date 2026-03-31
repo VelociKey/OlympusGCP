@@ -5,5 +5,5 @@ go_library(
     srcs = ["analytic.connect.go"],
     importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/analytic/v1/analyticv1connect",
     visibility = ["//visibility:public"],
-    deps = ["@com_connectrpc_connect//:go_default_library"],
+    deps = ["@com_connectrpc_connect//:connect"],
 )

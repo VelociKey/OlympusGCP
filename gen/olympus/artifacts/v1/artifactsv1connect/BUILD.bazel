@@ -5,5 +5,5 @@ go_library(
     srcs = ["artifacts.connect.go"],
     importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/artifacts/v1/artifactsv1connect",
     visibility = ["//visibility:public"],
-    deps = ["@com_connectrpc_connect//:go_default_library"],
+    deps = ["@com_connectrpc_connect//:connect"],
 )

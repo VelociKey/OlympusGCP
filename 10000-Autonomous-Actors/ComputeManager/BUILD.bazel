@@ -1,1 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+
 exports_files(["main.go"])
+
+go_library(
+    name = "ComputeManager_lib",
+    srcs = ["main.go"],
+    importpath = "olympus.fleet/00SDLC/OlympusGCP/10000-Autonomous-Actors/ComputeManager",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//00SDLC/OlympusGCP/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference",
+        "@org_golang_x_net//http2",
+        "@org_golang_x_net//http2/h2c",
+    ],
+)
+
+go_binary(
+    name = "ComputeManager",
+    embed = [":ComputeManager_lib"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "ComputeManager_test",
+    srcs = ["main_test.go"],
+    embed = [":ComputeManager_lib"],
+    deps = [
+        "//00SDLC/OlympusGCP/10000-Autonomous-Actors/10700-Processing-Engines/10710-Reasoning-Inference/inference",
+        "//00SDLC/OlympusGCP/40000-Communication-Contracts/40400-Protocol-Synthetics/protobuf/proto/v1/compute",
+        "@com_connectrpc_connect//:connect",
+    ],
+)

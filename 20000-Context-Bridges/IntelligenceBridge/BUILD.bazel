@@ -8,8 +8,8 @@ go_library(
     deps = [
         "//00SDLC/Olympus2/90000-Enablement-Labs/90200-Logic-Libraries/140-MCPBridge",
         "//00SDLC/OlympusGCP/40000-Communication-Contracts/40400-Protocol-Synthetics/protobuf/proto/v1/intelligence",
-        "@com_connectrpc_connect//:go_default_library",
-        "@com_github_mark3labs_mcp_go//mcp:go_default_library",
+        "@com_connectrpc_connect//:connect",
+        "@com_github_mark3labs_mcp_go//mcp",
     ],
 )
 

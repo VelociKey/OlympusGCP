@@ -24,11 +24,11 @@ go_library(
         "//00SDLC/OlympusGCP/40000-Communication-Contracts/40400-Protocol-Synthetics/protobuf/proto/v1/intelligence",
         "//00SDLC/OlympusGCP/40000-Communication-Contracts/40400-Protocol-Synthetics/protobuf/proto/v1/messaging",
         "//00SDLC/OlympusGCP/40000-Communication-Contracts/40400-Protocol-Synthetics/protobuf/proto/v1/observability",
-        "@com_connectrpc_connect//:go_default_library",
-        "@com_google_cloud_go_cloudtasks//apiv2/cloudtaskspb:go_default_library",
+        "@com_connectrpc_connect//:connect",
+        "@com_google_cloud_go//cloudtasks/apiv2/cloudtaskspb",
         "@io_etcd_go_bbolt//:go_default_library",
-        "@org_golang_google_genproto//googleapis/iam/v1:go_default_library",
-        "@org_golang_google_protobuf//types/known/emptypb:go_default_library",
+        "@org_golang_google_genproto//googleapis/iam/v1:iam",
+        "@org_golang_google_protobuf//types/known/emptypb",
     ] + select({
         "@io_bazel_rules_go//go/platform:386": [
             "//00SDLC/Olympus2/90000-Enablement-Labs/90200-Logic-Libraries/170-Policy",
@@ -132,6 +132,6 @@ go_test(
         "//00SDLC/OlympusGCP/40000-Communication-Contracts/40400-Protocol-Synthetics/protobuf/proto/v1/observability",
         "//00SDLC/OlympusGCP/40000-Communication-Contracts/40400-Protocol-Synthetics/protobuf/proto/v1/storage",
         "//00SDLC/OlympusGCP/40000-Communication-Contracts/40400-Protocol-Synthetics/protobuf/proto/v1/vault",
-        "@com_connectrpc_connect//:go_default_library",
+        "@com_connectrpc_connect//:connect",
     ],
 )

@@ -5,5 +5,5 @@ go_library(
     srcs = ["foundation.connect.go"],
     importpath = "olympus.fleet/00SDLC/OlympusGCP/gen/olympus/foundation/v1/foundationv1connect",
     visibility = ["//visibility:public"],
-    deps = ["@com_connectrpc_connect//:go_default_library"],
+    deps = ["@com_connectrpc_connect//:connect"],
 )

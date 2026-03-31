@@ -10,9 +10,9 @@ proto_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:api_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/iam/v1:v1_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/storage/v1:v1_proto",
+        "//google/api:api_proto",
+        "//google/iam/v1:v1_proto",
+        "//google/storage/v1:v1_proto",
         "@com_google_protobuf//:field_mask_proto",
         "@com_google_protobuf//:timestamp_proto",
         "@com_google_protobuf//:wrappers_proto",
@@ -25,9 +25,9 @@ go_proto_library(
     proto = ":storage_proto",
     visibility = ["//visibility:public"],
     deps = [
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:field_behavior_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/iam/v1:iam_policy_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/storage/v1:storage_resources_proto",
+        "//google/api:field_behavior_proto",
+        "//google/iam/v1:iam_policy_proto",
+        "//google/storage/v1:storage_resources_proto",
     ],
 )
 

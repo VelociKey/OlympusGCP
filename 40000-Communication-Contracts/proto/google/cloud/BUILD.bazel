@@ -1,18 +1,24 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 load("@rules_proto//proto:defs.bzl", "proto_library")
-
-proto_library(
-    name = "cloud_proto",
-    srcs = ["cloud.proto"],
-    visibility = ["//visibility:public"],
-)
 
 proto_library(
     name = "extended_operations_proto",
     srcs = ["extended_operations.proto"],
     visibility = ["//visibility:public"],
-    deps = [
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:annotations_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:client_proto",
-        "//00SDLC/OlympusGCP/40000-Communication-Contracts/proto/google/api:field_behavior_proto",
-    ],
+    deps = ["@com_google_protobuf//:descriptor_proto"],
+)
+
+go_proto_library(
+    name = "extendedops_go_proto",
+    importpath = "google.golang.org/genproto/googleapis/cloud/extendedops",
+    proto = ":extended_operations_proto",
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "extendedops",
+    embed = [":extendedops_go_proto"],
+    importpath = "google.golang.org/genproto/googleapis/cloud/extendedops",
+    visibility = ["//visibility:public"],
 )
